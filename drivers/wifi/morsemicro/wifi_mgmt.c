@@ -47,7 +47,7 @@ static void scan_callback(const struct mmwlan_scan_result *result, void *arg)
 
 	memcpy(scan.mac, result->bssid, WIFI_MAC_ADDR_LEN);
 	scan.mac_length = WIFI_MAC_ADDR_LEN;
-	scan.band = WIFI_FREQ_BAND_UNKNOWN;
+	scan.band = WIFI_FREQ_BAND_SUB_1_GHZ;
 	scan.channel = 0;
 	scan.rssi = (int8_t)result->rssi;
 
@@ -256,11 +256,7 @@ static int morsemicro_mgmt_iface_status(const struct device *dev, struct wifi_if
 		strncpy(status->ssid, ap_args->ssid, WIFI_SSID_MAX_LEN);
 		status->ssid_len = ap_args->ssid_len;
 		status->iface_mode = WIFI_MODE_AP;
-#ifdef CONFIG_WIFI_MORSEMICRO_PATCHED
 		status->band = WIFI_FREQ_BAND_SUB_1_GHZ;
-#else
-		status->band = WIFI_FREQ_BAND_UNKNOWN;
-#endif /* CONFIG_WIFI_MORSEMICRO_PATCHED */
 		status->link_mode = WIFI_LINK_MODE_UNKNOWN;
 		status->mfp = ap_args->pmf_mode == MMWLAN_PMF_DISABLED ? WIFI_MFP_DISABLE
 								       : WIFI_MFP_REQUIRED;
@@ -296,11 +292,7 @@ static int morsemicro_mgmt_iface_status(const struct device *dev, struct wifi_if
 	strncpy(status->ssid, dev_data->sta.sta_args.ssid, WIFI_SSID_MAX_LEN);
 	status->ssid_len = dev_data->sta.sta_args.ssid_len;
 	status->iface_mode = WIFI_MODE_INFRA;
-#ifdef CONFIG_WIFI_MORSEMICRO_PATCHED
 	status->band = WIFI_FREQ_BAND_SUB_1_GHZ;
-#else
-	status->band = WIFI_FREQ_BAND_UNKNOWN;
-#endif /* CONFIG_WIFI_MORSEMICRO_PATCHED */
 	status->link_mode = WIFI_LINK_MODE_UNKNOWN;
 	status->mfp = dev_data->sta.sta_args.pmf_mode == MMWLAN_PMF_DISABLED ? WIFI_MFP_DISABLE
 									     : WIFI_MFP_REQUIRED;
