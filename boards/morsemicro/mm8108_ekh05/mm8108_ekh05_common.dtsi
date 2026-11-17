@@ -232,6 +232,11 @@ stm32_lp_tick_source: &lptim1 {
 	status = "okay";
 };
 
+&adc4 {
+	status = "okay";
+	st,adc-prescaler = <4>;
+};
+
 &vbat4 {
 	status = "okay";
 };
