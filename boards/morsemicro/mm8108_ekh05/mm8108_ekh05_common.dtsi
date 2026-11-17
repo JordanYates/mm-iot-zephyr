@@ -165,14 +165,16 @@ stm32_lp_tick_source: &lptim1 {
 
 &spi1 {
 	pinctrl-0 = <&spi1_sck_pe13 &spi1_miso_pe14 &spi1_mosi_pe15>;
-	pinctrl-names = "default";
+	pinctrl-1 = <&analog_pe13 &analog_pe14 &analog_pe15>;
+	pinctrl-names = "default", "sleep";
 	status = "okay";
 	cs-gpios = <&gpioe 12 GPIO_ACTIVE_LOW>;
 };
 
 &spi3 {
 	pinctrl-0 = <&spi3_sck_pc10 &spi3_miso_pc11 &spi3_mosi_pc12>;
-	pinctrl-names = "default";
+	pinctrl-1 = <&analog_pc10 &analog_pc11 &analog_pc12>;
+	pinctrl-names = "default", "sleep";
 	status = "okay";
 	cs-gpios = <&gpioa 15 GPIO_ACTIVE_LOW>;
 	hci_spi: bluenrg-2@0 {
@@ -197,7 +199,8 @@ stm32_lp_tick_source: &lptim1 {
 
 &i2c1 {
 	pinctrl-0 = <&i2c1_scl_pb8 &i2c1_sda_pb9>;
-	pinctrl-names = "default";
+	pinctrl-1 = <&analog_pb8 &analog_pb9>;
+	pinctrl-names = "default", "sleep";
 	status = "okay";
 	clock-frequency = <I2C_BITRATE_FAST>;
 
